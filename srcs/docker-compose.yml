@@ -1,0 +1,35 @@
+version: '3'
+
+networks:
+  net_dock:
+    driver: bridge
+
+volumes:
+  v_wordpress:
+  v_db:
+
+services:
+
+  nginx:
+    container_name: nginx
+    build: images/nginx
+    networks:
+      - net_dock
+    volumues:
+      - v_wordpress:/home/v_w/
+
+  wordpress_php:
+    container_name: wordpress_php
+    build: images/wordpres-php
+    networks:
+      - net_dock
+    volumes:
+      - v_wordpress:/home/v_w
+
+  mariadb:
+    container_name: mariadb
+    build: images/mariadb
+    networks:
+      - net_dock
+    volumes:
+      - v_db
