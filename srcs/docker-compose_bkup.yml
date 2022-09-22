@@ -15,8 +15,6 @@ services:
     build: images/nginx
     networks:
       - net_dock
-    ports:
-      - "1024:80"
     volumes:
       - v_wordpress:/v_w
 
