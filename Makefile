@@ -1,0 +1,3 @@
+NAME	=	Inception
+
+DSRC	=	srcs
