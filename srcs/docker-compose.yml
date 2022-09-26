@@ -19,8 +19,6 @@ services:
       - "1024:80"
     volumes:
       - v_wordpress:/v_w
-
-    # THINK ABOUT STDIN & TTY
     stdin_open: true
     tty: true
 
@@ -29,6 +27,8 @@ services:
     build: images/wordpress-php
     networks:
       - net_dock
+    ports:
+      - "1025:81"
     volumes:
       - v_wordpress:/v_w
     stdin_open: true
