@@ -1,4 +1,5 @@
-FROM	debian:buster
-RUN		apt update && apt install -y nginx vim && apt update
-COPY	complement/start_nginx.sh /
-CMD		["sh", "start_nginx.sh"]
+FROM		debian:buster
+RUN			apt update \
+			&& apt install -y nginx vim \
+			&& apt update
+CMD			["/usr/sbin/nginx", "-g", "daemon off;"]
