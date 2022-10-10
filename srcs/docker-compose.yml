@@ -1,14 +1,25 @@
-version: '3'
+version: "${VERSION}"
 
 networks:
   net_dock:
-    driver: bridge
 
 volumes:
   v_wordpress:
   v_mariadb:
 
 services:
+
+  mariadb:
+    container_name: mariaDB
+    build: images/mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD=${}
+    networks:
+      - net_dock
+    volumes:
+      - v_mariadb:/v_db
+    stdin_open: true
+    tty: true
 
   nginx:
     container_name: nginx
@@ -34,12 +45,4 @@ services:
     stdin_open: true
     tty: true
 
-  mariadb:
-    container_name: mariaDB
-    build: images/mariadb
-    networks:
-      - net_dock
-    volumes:
-      - v_mariadb:/v_db
-    stdin_open: true
-    tty: true
+

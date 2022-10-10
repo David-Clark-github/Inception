@@ -10,6 +10,7 @@ stop:
 
 c_rm:	stop
 	docker container rm $$(docker ps -aq)
+	docker volume rm $$(docker volume ls -q)
 
 fclean:	c_rm
 	docker image rm $$(docker images -q)
