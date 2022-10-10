@@ -13,11 +13,15 @@ services:
     container_name: mariaDB
     build: images/mariadb
     environment:
-      MARIADB_ROOT_PASSWORD=${}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+	  MARIADB_DATABSE: ${MARIADB_DATABSE}
+	  MARIADB_USER: ${MARIADB_USER}
+	  MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     networks:
       - net_dock
     volumes:
-      - v_mariadb:/v_db
+      - ./data/mysql:/v_db
+	restart: always
     stdin_open: true
     tty: true
 
@@ -29,7 +33,7 @@ services:
     ports:
       - "1024:80"
     volumes:
-      - v_wordpress:/v_w
+      - ./data/html:/v_w
     stdin_open: true
     tty: true
 
