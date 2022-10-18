@@ -10,18 +10,18 @@ volumes:
 services:
 
   mariadb:
-    container_name: mariaDB
+    container_name: mariadb
     build: images/mariadb
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
-	  MARIADB_DATABSE: ${MARIADB_DATABSE}
-	  MARIADB_USER: ${MARIADB_USER}
-	  MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_DATABSE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     networks:
       - net_dock
     volumes:
       - ./data/mysql:/v_db
-	restart: always
+    restart: always
     stdin_open: true
     tty: true
 
