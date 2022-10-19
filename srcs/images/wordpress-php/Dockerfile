@@ -1,3 +1,5 @@
 FROM	debian:buster
 RUN		apt update && apt install -y \
-		wordpress php-fpm
+		wordpress \
+		php-fpm \
+		vim

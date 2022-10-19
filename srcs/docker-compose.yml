@@ -20,8 +20,9 @@ services:
     networks:
       - net_dock
     volumes:
-      - ./data/mysql:/v_db
+      - v_mariadb:/v_db
     restart: always
+    init: true
     stdin_open: true
     tty: true
 
@@ -33,7 +34,7 @@ services:
     ports:
       - "1024:80"
     volumes:
-      - ./data/html:/v_w
+      - v_wordpress:/v_w
     stdin_open: true
     tty: true
 
