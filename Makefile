@@ -3,6 +3,7 @@ NAME	=	Inception
 DSRC	=	srcs/
 
 $(NAME):
+	docker-compose -f ./$(DSRC)docker-compose.yml down
 	docker-compose -f ./$(DSRC)docker-compose.yml up -d
 
 stop:
