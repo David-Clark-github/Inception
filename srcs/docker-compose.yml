@@ -28,7 +28,7 @@ services:
 
   nginx:
     depends_on:
-    - mariadb
+    - wordpress_php
     container_name: nginx
     build: images/nginx
     networks:
@@ -42,6 +42,8 @@ services:
     tty: true
 
   wordpress_php:
+    depends_on:
+    - mariadb
     container_name: wordpress-php
     build: images/wordpress-php
     environment:
@@ -50,8 +52,6 @@ services:
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     networks:
       - net_dock
-    ports:
-      - "1025:81"
     volumes:
       - v_wordpress:/v_w
     restart: unless-stopped

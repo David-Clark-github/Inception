@@ -4,7 +4,8 @@ DSRC	=	srcs/
 
 $(NAME):
 	docker-compose -f ./$(DSRC)docker-compose.yml down
-	docker-compose -f ./$(DSRC)docker-compose.yml up -d
+	docker-compose -f ./$(DSRC)docker-compose.yml build
+	docker-compose -f ./$(DSRC)docker-compose.yml up
 
 
 # Wordpress
