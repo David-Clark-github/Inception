@@ -5,7 +5,7 @@ RUN		apt-get update && apt-get install -y \
 		php-mysql \
 		vim
 
-EXPOSE	9000/tcp
+EXPOSE	9000
 COPY	./file_requirement/wp-config.php /
 COPY	./file_requirement/www.conf /etc/php/7.3/fpm/pool.d/
 RUN		wget https://wordpress.org/latest.tar.gz \

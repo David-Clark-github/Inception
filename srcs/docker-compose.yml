@@ -12,6 +12,7 @@ services:
   mariadb:
     container_name: mariadb
     build: images/mariadb
+    hostname: mariadb
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       MARIADB_DATABSE: ${MARIADB_DATABASE}
@@ -21,6 +22,8 @@ services:
       - net_dock
     volumes:
       - v_mariadb:/v_db
+    expose:
+      - 3306
     restart: unless-stopped
     init: true
     stdin_open: true
@@ -28,7 +31,7 @@ services:
 
   nginx:
     depends_on:
-    - wordpress_php
+    - wordpress-php
     container_name: nginx
     build: images/nginx
     networks:
@@ -41,7 +44,7 @@ services:
     stdin_open: true
     tty: true
 
-  wordpress_php:
+  wordpress-php:
     depends_on:
     - mariadb
     container_name: wordpress-php
@@ -58,5 +61,3 @@ services:
     #restart: always
     stdin_open: true
     tty: true
-
-
