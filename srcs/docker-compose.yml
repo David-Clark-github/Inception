@@ -1,4 +1,4 @@
-version: "${VERSION}"
+version: "3"
 
 networks:
   net_dock:
