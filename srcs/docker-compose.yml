@@ -1,2 +1,30 @@
-version '3'
+version: "3"
 
+networks:
+  net_dock:
+
+volumes:
+  v_wordpress:
+  v_mariadb:
+
+services:
+
+  mariadb:
+    container_name: mariadb
+    build: images/mariadb
+    hostname: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: "password_root"
+      MARIADB_DATABSE: "wordpress"
+      MARIADB_USER: "wordpress_user"
+      MARIADB_PASSWORD: "password"
+    networks:
+      - net_dock
+    volumes:
+    - v_mariadb:/volume_mariadb
+    expose:
+      - 3306
+    restart: always
+    init: true
+    stdin_open: true
+    tty: true
