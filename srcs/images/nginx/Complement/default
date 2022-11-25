@@ -1,6 +1,6 @@
 server {
             listen 80;
-            root /v_w;
+            root /v_wordpress;
             index index.php;
             server_name localhost;
 
@@ -14,7 +14,7 @@ server {
 
             location ~ \.php$ {
                          include snippets/fastcgi-php.conf;
-                         fastcgi_pass wordpress-php:9000;
+                         fastcgi_pass wordpress:9000;
 						 #fastcgi_index index.php;
             }
             

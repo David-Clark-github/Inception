@@ -47,3 +47,18 @@ services:
     stdin_open: true
     tty: true
 
+  nginx:
+    depends_on:
+      - wordpress
+    container_name: nginx
+    build: images/nginx
+    networks:
+      - net_dock
+    ports:
+      - "443:80"
+    volumes:
+      - v_wordpress:/v_wordpress
+    restart: always
+    init: true
+    stdin_open: true
+    tty: true
