@@ -21,10 +21,29 @@ services:
     networks:
       - net_dock
     volumes:
-    - v_mariadb:/volume_mariadb
+    - v_mariadb:/v_mariadb
     expose:
       - 3306
     restart: always
     init: true
     stdin_open: true
     tty: true
+
+  wordpress:
+    depends_on:
+    - mariadb
+    container_name: wordpress
+    build: images/wordpress
+    environment:
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    networks:
+      - net_dock
+    volumes:
+    - v_wordpress:/v_wordpress
+    restart: always
+    init: true
+    stdin_open: true
+    tty: true
+
