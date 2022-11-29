@@ -40,6 +40,8 @@ services:
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     networks:
       - net_dock
+    expose:
+      - 9000
     volumes:
     - v_wordpress:/v_wordpress
     restart: always
