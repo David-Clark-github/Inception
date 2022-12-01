@@ -1,11 +1,15 @@
 server {
-            listen 80;
-            root /v_wordpress;
+            listen 443;
+            root /var/www/html/;
             index index.php;
-            server_name localhost;
+            server_name dclark.42.fr;
 
 	    access_log /var/log/nginx/SUBDOMAIN.access.log;
     	    error_log /var/log/nginx/SUBDOMAIN.error.log;
+
+			ssl_certificate /etc/nginx/ssl/cert/server.crt;
+			ssl_certificate_key /etc/nginx/ssl/private/server.key;
+			ssl_protocols	TLSv1.3;
 
             location / {
                          #try_files $uri $uri/ =404;

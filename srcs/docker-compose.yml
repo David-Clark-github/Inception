@@ -14,16 +14,14 @@ services:
     build: images/mariadb
     hostname: mariadb
     environment:
-      MARIADB_ROOT_PASSWORD: "password_root"
-      MARIADB_DATABSE: "wordpress"
-      MARIADB_USER: "wordpress_user"
-      MARIADB_PASSWORD: "password"
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     networks:
       - net_dock
     volumes:
     - v_mariadb:/v_mariadb
-    expose:
-      - 3306
     restart: always
     init: true
     stdin_open: true
@@ -34,6 +32,7 @@ services:
     - mariadb
     container_name: wordpress
     build: images/wordpress
+    hostname: wordpress
     environment:
       MARIADB_DATABASE: ${MARIADB_DATABASE}
       MARIADB_USER: ${MARIADB_USER}
@@ -43,7 +42,7 @@ services:
     expose:
       - 9000
     volumes:
-    - v_wordpress:/v_wordpress
+    - v_wordpress:/var/www/html
     restart: always
     init: true
     stdin_open: true
@@ -54,12 +53,13 @@ services:
       - wordpress
     container_name: nginx
     build: images/nginx
+    hostname: nginx
     networks:
       - net_dock
     ports:
-      - "443:80"
+      - "443:443"
     volumes:
-      - v_wordpress:/v_wordpress
+      - v_wordpress:/var/www/html
     restart: always
     init: true
     stdin_open: true
